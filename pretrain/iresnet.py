@@ -162,10 +162,10 @@ class IResNet(nn.Module):
         return x
 
 
-def _iresnet(arch, block, layers, pretrained, progress, **kwargs):
+def _iresnet(cfg, arch, block, layers, pretrained, progress, **kwargs):
     model = IResNet(block, layers, **kwargs)
     if pretrained:
-        raise ValueError()
+        model.load_state_dict()
     return model
 
 
