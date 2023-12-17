@@ -162,10 +162,10 @@ class IResNet(nn.Module):
         return x
 
 
-def _iresnet(cfg, arch, block, layers, pretrained, progress, **kwargs):
+def _iresnet(cfg, arch, block, layers, pretrained, progress, config=None, **kwargs):
     model = IResNet(block, layers, **kwargs)
     if pretrained:
-        model.load_state_dict()
+        model.load_state_dict(config.iresnet_path)
     return model
 
 
@@ -179,9 +179,9 @@ def iresnet34(pretrained=False, progress=True, **kwargs):
                     progress, **kwargs)
 
 
-def iresnet50(pretrained=False, progress=True, **kwargs):
+def iresnet50(pretrained=False, progress=True, config=None, **kwargs):
     return _iresnet('iresnet50', IBasicBlock, [3, 4, 14, 3], pretrained,
-                    progress, **kwargs)
+                    progress, config **kwargs)
 
 
 def iresnet100(pretrained=False, progress=True, **kwargs):
